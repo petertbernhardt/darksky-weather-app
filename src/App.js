@@ -2,18 +2,7 @@ import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 import './App.css';
 import {WeatherTile} from './components/weatherTile.js';
-
-class WeatherNav extends React.Component {
-  render() {
-    return <Navbar inverse>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a>Weather App</a>
-        </Navbar.Brand>
-      </Navbar.Header>
-    </Navbar>;
-  }
-}
+import {WeatherNav} from './components/weatherNav.js';
 
 class App extends Component {
   render() {
