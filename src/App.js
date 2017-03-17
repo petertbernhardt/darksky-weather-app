@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
 import './App.css';
 import {WeatherTile} from './components/weatherTile.js';
 import {WeatherNav} from './components/weatherNav.js';
