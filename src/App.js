@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import './App.css';
-
-class WeatherTile extends React.Component {
-  render() {
-    return <div className="weather-tile">{this.props.children}</div>;
-  }
-}
+import {WeatherTile} from './components/weatherTile.js';
 
 class WeatherNav extends React.Component {
   render() {
