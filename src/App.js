@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import './App.css';
 
 class WeatherTile extends React.Component {
@@ -8,17 +9,23 @@ class WeatherTile extends React.Component {
   }
 }
 
+class WeatherNav extends React.Component {
+  render() {
+    return <Navbar inverse>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <a>Weather App</a>
+        </Navbar.Brand>
+      </Navbar.Header>
+    </Navbar>;
+  }
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <WeatherNav />
         <WeatherTile>1</WeatherTile>
         <WeatherTile>2</WeatherTile>
         <WeatherTile>3</WeatherTile>
