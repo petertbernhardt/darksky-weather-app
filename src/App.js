@@ -43,11 +43,11 @@ class App extends Component {
       <div className="App">
         <WeatherNav />
         <div>Today: <WeatherTile>{this.state.weatherData}</WeatherTile></div>
-        <div>
+        <div className="hourly-container">
           Hourly:
           {hourlyTiles}
         </div>
-        <div>
+        <div className="daily-container">
           Daily:
           {dailyTiles}
         </div>
