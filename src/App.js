@@ -30,11 +30,19 @@ class App extends Component {
   }
 
   render() {
+    var hourlyTiles = [];
+    for (var i = 1; i < 6; i++) {
+      hourlyTiles.push(<WeatherTile hourly='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
+    }
+
     return (
       <div className="App">
         <WeatherNav />
         <div>Today: <WeatherTile>{this.state.weatherData}</WeatherTile></div>
-        <div>Hourly:</div>
+        <div>
+          Hourly:
+          {hourlyTiles}
+        </div>
       </div>
     );
   }

@@ -6,4 +6,6 @@
   display: inline-block;
   width: 14.2857%;
   border: 2px solid black;
+  margin: 5px;
+  padding-top: 5px;
 }
