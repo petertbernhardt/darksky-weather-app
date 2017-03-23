@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var data;
+    let data;
     this.getWeatherData()
       .then((json) => {
         data = json;
@@ -30,9 +30,13 @@ class App extends Component {
   }
 
   render() {
-    var hourlyTiles = [];
-    for (var i = 1; i < 6; i++) {
+    let hourlyTiles = [];
+    for (let i = 1; i < 8; i++) {
       hourlyTiles.push(<WeatherTile hourly='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
+    }
+    let dailyTiles = [];
+    for (let i = 1; i < 8; i++) {
+      dailyTiles.push(<WeatherTile daily='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
     }
 
     return (
@@ -42,6 +46,10 @@ class App extends Component {
         <div>
           Hourly:
           {hourlyTiles}
+        </div>
+        <div>
+          Daily:
+          {dailyTiles}
         </div>
       </div>
     );
