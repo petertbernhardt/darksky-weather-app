@@ -42,14 +42,16 @@ class App extends Component {
     return (
       <div className="App">
         <WeatherNav />
-        <div>Today: <WeatherTile>{this.state.weatherData}</WeatherTile></div>
-        <div className="hourly-container">
-          Hourly:
-          {hourlyTiles}
+        <div className="today-container">
+          Today: <WeatherTile>{this.state.weatherData}</WeatherTile>
         </div>
+        Hourly:
+        <div className="hourly-container">
+          <div className="hourly-inner-container">{hourlyTiles}</div>
+        </div>
+        Daily:
         <div className="daily-container">
-          Daily:
-          {dailyTiles}
+          <div className="daily-inner-container">{dailyTiles}</div>
         </div>
       </div>
     );

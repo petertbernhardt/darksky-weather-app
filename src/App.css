@@ -4,6 +4,8 @@
 
 .weather-tile {
 	border: 2px solid black;
+	margin: 5px;
+	padding-top: 5px;
 }
 
 @media only screen and (min-width: 992px) {
@@ -11,14 +13,31 @@
 	.weather-tile {
 	  	display: inline-block;
 	  	width: 14.2857%;
-	  	margin: 5px;
-	  	padding-top: 5px;
 	}
 }
 
 @media only screen and (max-width: 991px) {
 	.weather-tile {
+
+	}
+
+	.today-container > .weather-tile, .hourly-container, .daily-container {
 		width: 80%;
 		margin: 0 auto;
+	}
+
+	.hourly-container, .daily-container {
+		overflow-x: scroll;
+	}
+
+	.hourly-inner-container, .daily-inner-container {
+		display: flex;
+		white-space: nowrap;
+	}
+
+	.hourly-inner-container > .weather-tile, .daily-inner-container > .weather-tile {
+		margin-right: 5%;
+		flex: 0 1;
+		padding: 5px;
 	}
 }
