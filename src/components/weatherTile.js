@@ -55,7 +55,8 @@ export class WeatherTile extends React.Component {
 	  		// loop through the hours
 	  		let dailyData = getDailyData(number, this.props.children.daily);
 	  		let currentWeather = dailyData.summary;
-	  		let temperature = dailyData.temperature;
+	  		let temperatureMin = dailyData.temperatureMin;
+	  		let temperatureMax = dailyData.temperatureMax;
 	  		let weatherIcon = '';
 	  		weatherIcon = getWeatherIcon(currentWeather);
 	  		contents =
@@ -63,7 +64,8 @@ export class WeatherTile extends React.Component {
 		  			<p>{ month }/{ day }</p>
 		  			<WeatherIcons name={ weatherIcon } size='2x' />
 		  			<p>Weather:  { currentWeather }</p>
-		  			<p>Temperature: { temperature }</p>
+		  			<p>Temperature Min: { temperatureMin }</p>
+		  			<p>Temperature Max: { temperatureMax }</p>
 		  		</div>;
 	  	}
   	} else {
