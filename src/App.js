@@ -6,26 +6,9 @@ import {WeatherNav} from './components/weatherNav.js';
 import Geosuggest from 'react-geosuggest';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      weatherData: {},
-      latLng: '47.6062,-122.3321',
-      darkskyKey: '',
-      googleKey: ''
-    };
-  }
-
-  getAPIKeys = () => {
-    var data = require('./config.json');
-    this.setState({
-      darkskyKey: data.apiKey,
-      googleKey: data.googleKey
-    });
-  }
 
   callWeatherAPI() {
-    var url = 'https://api.darksky.net/forecast/' + this.state.apiKey + '/' + this.state.latLng;
+    var url = 'https://api.darksky.net/forecast/' + this.state.darkskyKey + '/' + this.state.latLng;
     return fetchJsonp(url)
       .then(function(response) {
         return response.json();
@@ -43,8 +26,17 @@ class App extends Component {
       });
   }
 
+  componentWillMount() {
+    var data = require('./config.json');
+    this.state = {
+      weatherData: {},
+      latLng: '47.6062,-122.3321',
+      darkskyKey: data.darkskyKey,
+      googleKey: data.googleKey
+    };
+  }
+
   componentDidMount() {
-    this.getAPIKeys();
     this.processWeatherData();
   }
 
@@ -68,7 +60,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <script src="https://maps.googleapis.com/maps/api/js?key={ this.state.googleKey }&libraries=places"></script>
         <WeatherNav />
         <div className="location-container">
           <h3>Select a Location</h3>
@@ -86,6 +77,7 @@ class App extends Component {
         <div className="daily-container">
           <div className="daily-inner-container">{dailyTiles}</div>
         </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key={ this.state.googleKey }&libraries=places"></script>
       </div>
     );
   }
