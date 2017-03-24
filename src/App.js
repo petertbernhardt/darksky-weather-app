@@ -11,7 +11,9 @@ class App extends Component {
   }
 
   getWeatherData() {
-    return fetchJsonp('https://api.darksky.net/forecast/61df4ca5d6853174a5cb712cc3ef8fb4/47.6062,-122.3321')
+    var data = require('./config.json');
+    var url = 'https://api.darksky.net/forecast/' + data.apiKey + '/47.6062,-122.3321';
+    return fetchJsonp(url)
       .then(function(response) {
         return response.json();
       });
