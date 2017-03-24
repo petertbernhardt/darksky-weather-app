@@ -3,32 +3,57 @@ import fetchJsonp from 'fetch-jsonp';
 import './App.css';
 import {WeatherTile} from './components/weatherTile.js';
 import {WeatherNav} from './components/weatherNav.js';
+import Geosuggest from 'react-geosuggest';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { weatherData: {} };
+    this.state = {
+      weatherData: {},
+      latLng: '47.6062,-122.3321',
+      darkskyKey: '',
+      googleKey: ''
+    };
   }
 
-  getWeatherData() {
+  getAPIKeys = () => {
     var data = require('./config.json');
-    var url = 'https://api.darksky.net/forecast/' + data.apiKey + '/47.6062,-122.3321';
+    this.setState({
+      darkskyKey: data.apiKey,
+      googleKey: data.googleKey
+    });
+  }
+
+  callWeatherAPI() {
+    var url = 'https://api.darksky.net/forecast/' + this.state.apiKey + '/' + this.state.latLng;
     return fetchJsonp(url)
       .then(function(response) {
         return response.json();
       });
   }
 
-  componentDidMount() {
+  processWeatherData() {
     let data;
-    this.getWeatherData()
+    this.callWeatherAPI()
       .then((json) => {
         data = json;
         this.setState({
           weatherData: data
         });
-        console.log(this.state.weatherData);
       });
+  }
+
+  componentDidMount() {
+    this.getAPIKeys();
+    this.processWeatherData();
+  }
+
+  onSuggestSelect = (suggest) => {
+    let latLng = '' + suggest.location.lat + ',' + suggest.location.lng;
+    this.setState({
+      latLng: latLng
+    });
+    this.processWeatherData();
   }
 
   render() {
@@ -43,7 +68,13 @@ class App extends Component {
 
     return (
       <div className="App">
+        <script src="https://maps.googleapis.com/maps/api/js?key={ this.state.googleKey }&libraries=places"></script>
         <WeatherNav />
+        <div className="location-container">
+          <h3>Select a Location</h3>
+          <Geosuggest onSuggestSelect={this.onSuggestSelect} />
+          <pre>Lat Lng: { this.state.latLng }</pre>
+        </div>
         <div className="today-container">
           Today: <WeatherTile>{this.state.weatherData}</WeatherTile>
         </div>

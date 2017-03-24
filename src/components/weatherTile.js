@@ -12,13 +12,19 @@ export class WeatherTile extends React.Component {
   		return dailyArray.data[number];
   	}
 
-  	function getWeatherIcon(currentWeather) {
+  	function getWeatherIcon(currentWeather, providedIcon) {
   		if (currentWeather.toLowerCase().includes('cloudy') ||
   			currentWeather.toLowerCase().includes('overcast')) {
   			return 'cloud';
   		} else if (currentWeather.toLowerCase().includes('rain') ||
   					currentWeather.toLowerCase().includes('drizzle')) {
   			return 'sprinkle';
+  		} else if (currentWeather.toLowerCase().includes('clear')) {
+  			if (providedIcon && providedIcon.toLowerCase().includes('night')) {
+  				return 'night-clear';
+  			} else {
+  				return 'day-sunny';
+  			}
   		}
   	}
 
@@ -36,11 +42,11 @@ export class WeatherTile extends React.Component {
 	  		let currentWeather = hourlyData.summary;
 	  		let temperature = hourlyData.temperature;
 	  		let weatherIcon = '';
-	  		weatherIcon = getWeatherIcon(currentWeather);
+	  		weatherIcon = getWeatherIcon(currentWeather, hourlyData.icon);
 	  		contents =
 		  		<div>
 		  			<p>Time: { time }</p>
-		  			<WeatherIcons name={weatherIcon} size='2x' />
+		  			<WeatherIcons name={ weatherIcon } size='2x' />
 		  			<p>Weather:  { currentWeather }</p>
 		  			<p>Temperature: { temperature }</p>
 		  		</div>;
@@ -83,7 +89,7 @@ export class WeatherTile extends React.Component {
 		  		<div>
 		  			<p>{ month }/{ day }</p>
 		  			<p>Time: { time }</p>
-		  			<WeatherIcons name={weatherIcon} size='2x' />
+		  			<WeatherIcons name={ weatherIcon } size='2x' />
 		  			<p>Weather:  { currentWeather }</p>
 		  			<p>Temperature: { temperature }</p>
 		  		</div>;

@@ -8,6 +8,21 @@
 	padding-top: 5px;
 }
 
+.geosuggest__suggests {
+	list-style: none;
+}
+
+.geosuggest__suggests--hidden {
+  	max-height: 0;
+  	overflow: hidden;
+  	border-width: 0;
+}
+
+.geosuggest__item:hover {
+	cursor: pointer;
+	color: blue;
+}
+
 @media only screen and (min-width: 992px) {
 
 	.weather-tile {
