@@ -77,7 +77,6 @@ class App extends Component {
         <div className="daily-container">
           <div className="daily-inner-container">{dailyTiles}</div>
         </div>
-        <script src="https://maps.googleapis.com/maps/api/js?key={ this.state.googleKey }&libraries=places"></script>
       </div>
     );
   }

@@ -14,12 +14,14 @@ export class WeatherTile extends React.Component {
 
   	function getWeatherIcon(currentWeather, providedIcon) {
   		if (currentWeather.toLowerCase().includes('cloudy') ||
-  			currentWeather.toLowerCase().includes('overcast')) {
+  			currentWeather.toLowerCase().includes('overcast') ||
+  			currentWeather.toLowerCase().includes('humid')) {
   			return 'cloud';
   		} else if (currentWeather.toLowerCase().includes('rain') ||
   					currentWeather.toLowerCase().includes('drizzle')) {
   			return 'sprinkle';
-  		} else if (currentWeather.toLowerCase().includes('clear')) {
+  		} else if (currentWeather.toLowerCase().includes('clear') ||
+  					currentWeather.toLowerCase().includes('dry')) {
   			if (providedIcon && providedIcon.toLowerCase().includes('night')) {
   				return 'night-clear';
   			} else {
