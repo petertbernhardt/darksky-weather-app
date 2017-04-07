@@ -9,21 +9,20 @@ class App extends Component {
 
 	callWeatherAPI() {
 		var url = 'https://api.darksky.net/forecast/' + this.state.darkskyKey + '/' + this.state.latLng;
-		return fetchJsonp(url)
-      .then(function(response) {
-	return response.json();
-});
+		return fetchJsonp(url).then(function(response) {
+			return response.json();
+		});
 	}
 
 	processWeatherData() {
 		let data;
 		this.callWeatherAPI()
-      .then((json) => {
-	data = json;
-	this.setState({
-		weatherData: data
-	});
-});
+			.then((json) => {
+				data = json;
+				this.setState({
+					weatherData: data
+				});
+			});
 	}
 
 	componentWillMount() {
