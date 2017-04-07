@@ -7,58 +7,58 @@ import Geosuggest from 'react-geosuggest';
 
 class App extends Component {
 
-  callWeatherAPI() {
-    var url = 'https://api.darksky.net/forecast/' + this.state.darkskyKey + '/' + this.state.latLng;
-    return fetchJsonp(url)
+	callWeatherAPI() {
+		var url = 'https://api.darksky.net/forecast/' + this.state.darkskyKey + '/' + this.state.latLng;
+		return fetchJsonp(url)
       .then(function(response) {
-        return response.json();
-      });
-  }
+	return response.json();
+});
+	}
 
-  processWeatherData() {
-    let data;
-    this.callWeatherAPI()
+	processWeatherData() {
+		let data;
+		this.callWeatherAPI()
       .then((json) => {
-        data = json;
-        this.setState({
-          weatherData: data
-        });
-      });
-  }
+	data = json;
+	this.setState({
+		weatherData: data
+	});
+});
+	}
 
-  componentWillMount() {
-    var data = require('./config.json');
-    this.state = {
-      weatherData: {},
-      latLng: '47.6062,-122.3321',
-      darkskyKey: data.darkskyKey,
-      googleKey: data.googleKey
-    };
-  }
+	componentWillMount() {
+		var data = require('./config.json');
+		this.state = {
+			weatherData: {},
+			latLng: '47.6062,-122.3321',
+			darkskyKey: data.darkskyKey,
+			googleKey: data.googleKey
+		};
+	}
 
-  componentDidMount() {
-    this.processWeatherData();
-  }
+	componentDidMount() {
+		this.processWeatherData();
+	}
 
-  onSuggestSelect = (suggest) => {
-    let latLng = '' + suggest.location.lat + ',' + suggest.location.lng;
-    this.setState({
-      latLng: latLng
-    });
-    this.processWeatherData();
-  }
+	onSuggestSelect = (suggest) => {
+		let latLng = '' + suggest.location.lat + ',' + suggest.location.lng;
+		this.setState({
+			latLng: latLng
+		});
+		this.processWeatherData();
+	}
 
-  render() {
-    let hourlyTiles = [];
-    for (let i = 1; i < 8; i++) {
-      hourlyTiles.push(<WeatherTile hourly='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
-    }
-    let dailyTiles = [];
-    for (let i = 1; i < 8; i++) {
-      dailyTiles.push(<WeatherTile daily='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
-    }
+	render() {
+		let hourlyTiles = [];
+		for (let i = 1; i < 8; i++) {
+			hourlyTiles.push(<WeatherTile hourly='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
+		}
+		let dailyTiles = [];
+		for (let i = 1; i < 8; i++) {
+			dailyTiles.push(<WeatherTile daily='true' number={i} key={i}>{this.state.weatherData}</WeatherTile>);
+		}
 
-    return (
+		return (
       <div className="App">
         <WeatherNav />
         <div className="location-container">
@@ -79,7 +79,7 @@ class App extends Component {
         </div>
       </div>
     );
-  }
+	}
 }
 
 export default App;
