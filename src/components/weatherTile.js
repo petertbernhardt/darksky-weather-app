@@ -18,7 +18,8 @@ export class WeatherTile extends React.Component {
 			currentWeather.toLowerCase().includes('humid')) {
 				return 'cloud';
 			} else if (currentWeather.toLowerCase().includes('rain') ||
-					currentWeather.toLowerCase().includes('drizzle')) {
+					currentWeather.toLowerCase().includes('drizzle') ||
+					currentWeather.toLowerCase().includes('precipitation')) {
 				return 'sprinkle';
 			} else if (currentWeather.toLowerCase().includes('clear') ||
 					currentWeather.toLowerCase().includes('dry')) {
@@ -27,6 +28,13 @@ export class WeatherTile extends React.Component {
 				} else {
 					return 'day-sunny';
 				}
+			} else if (currentWeather.toLowerCase().includes('snow') ||
+					currentWeather.toLowerCase().includes('flurries')) {
+				return 'snow';
+			} else if (currentWeather.toLowerCase().includes('wind') ||
+					currentWeather.toLowerCase().includes('breezy') ||
+					currentWeather.toLowerCase().includes('breeze')) {
+				return 'windy'
 			}
 		}
 
