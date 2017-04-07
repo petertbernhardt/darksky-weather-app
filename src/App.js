@@ -63,7 +63,6 @@ class App extends Component {
         <div className="location-container">
           <h3>Select a Location</h3>
           <Geosuggest onSuggestSelect={this.onSuggestSelect} />
-          <pre>Lat Lng: { this.state.latLng }</pre>
         </div>
         <div className="today-container">
           Today: <WeatherTile>{this.state.weatherData}</WeatherTile>
